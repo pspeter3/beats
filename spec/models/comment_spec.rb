@@ -8,5 +8,6 @@ describe Comment do
   it { should have_field(:body).of_type(String) }
   it { should validate_presence_of(:body) }
   it { should validate_length_of(:body).within(1..140) }
+  it { should have_field(:approved).of_type(Boolean).with_default_value_of(false) }
   it { should be_embedded_in(:beat) }
 end
