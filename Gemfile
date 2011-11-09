@@ -9,13 +9,17 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
-gem 'haml'
-gem 'mongoid'
+gem 'rabl'
+gem 'mongoid', '2.3.3'
 gem 'bson_ext', :require => "mongo"
+gem 'mongoid_taggable'
+gem 'mongoid_fulltext', :git => 'git://github.com/aaw/mongoid_fulltext.git'
+gem 'voteable_mongo'
 
 # Test requirements
 gem 'rspec', :group => "test"
 gem 'rack-test', :require => "rack/test", :group => "test"
+gem 'mongoid-rspec'
 
 # Padrino Stable Gem
 gem 'padrino', '0.10.5'
