@@ -8,5 +8,4 @@ describe Comment do
   it { should have_field(:body).of_type(String) }
   it { should validate_presence_of(:body) }
   it { should validate_length_of(:body).within(1..140) }
-  it { should be_timestamped_document }
 end
