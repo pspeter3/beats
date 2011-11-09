@@ -12,4 +12,10 @@ describe Beat do
   it { should validate_presence_of(:summary) }
   it { should validate_presence_of(:timestamp) }
   it { should embed_many(:comments) }
+  
+  it 'should add the type as a tag' do
+    b = Beat.create(:type => 'Hacking', :location => 'Lopata', 
+      :summary => 'Student wrote API server', :timestamp => Time.now)
+    b.tags_array.should include('Hacking')
+  end
 end
