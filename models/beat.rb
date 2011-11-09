@@ -11,4 +11,5 @@ class Beat
   validates_presence_of :location
   validates_presence_of :summary
   
+  embeds_many :comments
 end
