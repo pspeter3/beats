@@ -15,6 +15,7 @@ gem 'bson_ext', :require => "mongo"
 gem 'mongoid_taggable'
 gem 'mongoid_fulltext', :git => 'git://github.com/aaw/mongoid_fulltext.git'
 gem 'voteable_mongo'
+gem 'nokogiri'
 
 # Test requirements
 gem 'rspec', :group => "test"
