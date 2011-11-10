@@ -41,6 +41,7 @@ GEM
       rspec (~> 2)
     mongoid_taggable (0.1.7)
     multi_json (1.0.3)
+    nokogiri (1.5.0)
     padrino (0.10.5)
       padrino-admin (= 0.10.5)
       padrino-cache (= 0.10.5)
@@ -113,6 +114,7 @@ DEPENDENCIES
   mongoid-rspec
   mongoid_fulltext!
   mongoid_taggable
+  nokogiri
   padrino (= 0.10.5)
   rabl
   rack-test
