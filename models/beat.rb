@@ -5,25 +5,32 @@ class Beat
   include Mongo::Voteable
   include Mongoid::Timestamps
   
-  field :type, :type => String
+  field :id, :type => Integer
+  field :crime, :type => String
   field :timestamp, :type => Time
   field :location, :type => String
   field :summary, :type => String
+  field :disposition, :type => String
+  field :value, :type => Integer
   
-  validates_presence_of :type
+  key :id
+  
+  validates_presence_of :id
+  validates_presence_of :crime
   validates_presence_of :timestamp
   validates_presence_of :location
   validates_presence_of :summary
+  validates_presence_of :disposition
   
   embeds_many :comments
   
   fulltext_search_in :summary
   voteable self, :up => +1, :down => -1
   
-  before_create :add_type_to_tags
+  before_create :add_crime_to_tags
   
   private
-  def add_type_to_tags
-    self.tags = self.type
+  def add_crime_to_tags
+    self.tags = self.crime
   end
 end
