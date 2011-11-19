@@ -14,6 +14,8 @@ with <http://www.studlife.com>.
 
 #### Index - GET /beats
 
+Returns a list of beats. In order to paginate, add a GET parameter page
+
 - id
 - crime
 - summary
