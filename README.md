@@ -12,3 +12,21 @@ with <http://www.studlife.com>.
 
 ### Beats
 
+#### Index - GET /beats
+
+- id
+- crime
+- summary
+- timestamp
+- location
+
+#### Show - GET /beats/:id
+
+- id
+- crime
+- summary
+- timestamp
+- location
+- disposition
+- value
+- tags

@@ -1,2 +1,2 @@
 collection @beats
-attributes :id, :crime, :timestamp, :location
+attributes :id, :crime, :summary, :timestamp, :location

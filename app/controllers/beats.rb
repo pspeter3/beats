@@ -9,6 +9,6 @@ Beats.controllers :beats do
   get :show, :map => '/beats/:id', :provides => :json do
     @beat = Beat.find params[:id]
     
-    render 'beats/show'
+    @beat.to_json
   end
 end
