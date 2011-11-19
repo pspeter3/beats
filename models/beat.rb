@@ -5,7 +5,7 @@ class Beat
   include Mongo::Voteable
   include Mongoid::Timestamps
   
-  field :id, :type => Integer
+  field :uid, :type => Integer
   field :crime, :type => String
   field :timestamp, :type => Time
   field :location, :type => String
@@ -13,9 +13,9 @@ class Beat
   field :disposition, :type => String
   field :value, :type => Integer
   
-  key :id
+  key :uid
   
-  validates_presence_of :id
+  validates_presence_of :uid
   validates_presence_of :crime
   validates_presence_of :timestamp
   validates_presence_of :location
@@ -28,6 +28,11 @@ class Beat
   voteable self, :up => +1, :down => -1
   
   before_create :add_crime_to_tags
+  
+  # Hand made pagination
+  def self.paginate(page)
+    self.skip((page - 1) * 10).limit(10)
+  end
   
   private
   def add_crime_to_tags

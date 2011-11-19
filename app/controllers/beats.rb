@@ -1,5 +1,9 @@
 Beats.controllers :beats do
-  get :index do
+  get :index, :provides => :json do
+    page = params[:page].to_i || 1
+    @beats = Beat.all
+    
+    render 'beats/index'
   end
 
   get :show, :map => '/beats/:id', :provides => :json do
