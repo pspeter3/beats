@@ -3,12 +3,12 @@ Beats.controllers :beats do
     page = params[:page].to_i || 1
     @beats = Beat.all
     
-    jsonp @beats, params
+    jsonp @beats
   end
 
   get :show, :map => '/beats/:id', :provides => :json do
     @beat = Beat.find params[:id]
     
-    @beat.to_json
+    jsonp @beat
   end
 end
