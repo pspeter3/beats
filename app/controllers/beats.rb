@@ -3,7 +3,7 @@ Beats.controllers :beats do
     page = params[:page].to_i || 1
     @beats = Beat.all
     
-    render 'beats/index'
+    jsonp @beats, params
   end
 
   get :show, :map => '/beats/:id', :provides => :json do
