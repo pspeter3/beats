@@ -73,9 +73,6 @@ GEM
       mail (~> 2.3.0)
       padrino-core (= 0.10.5)
     polyglot (0.3.3)
-    rabl (0.5.1)
-      activesupport (>= 2.3.14)
-      multi_json (~> 1.0.3)
     rack (1.3.5)
     rack-protection (1.1.4)
       rack
@@ -120,7 +117,6 @@ DEPENDENCIES
   mongoid_taggable
   nokogiri
   padrino (= 0.10.5)
-  rabl
   rack-test
   rake
   rspec

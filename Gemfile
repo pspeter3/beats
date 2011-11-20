@@ -11,7 +11,6 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 # Component requirements
 gem 'haml'
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'rabl'
 gem 'mongoid', '2.3.3'
 gem 'bson_ext', :require => "mongo"
 gem 'mongoid_taggable'
