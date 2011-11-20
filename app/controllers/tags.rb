@@ -8,8 +8,8 @@ Beats.controllers :tags do
   end
 
   get :show, :map => '/tags/:tag', :provides => :json do
-    @tags = Beat.tagged_with params[:tag]
+    @beats = Beat.tagged_with params[:tag]
     
-    jsonp @tags
+    jsonp @beats
   end
 end
