@@ -3,6 +3,7 @@ source :rubygems
 # Server requirements (defaults to WEBrick)
 # gem 'thin'
 # gem 'mongrel'
+gem 'unicorn'
 
 # Project requirements
 gem 'rake'
@@ -23,6 +24,7 @@ gem 'nokogiri'
 gem 'rspec', :group => "test"
 gem 'rack-test', :require => "rack/test", :group => "test"
 gem 'mongoid-rspec'
+gem 'heroku'
 
 # Padrino Stable Gem
 gem 'padrino', '0.10.5'
