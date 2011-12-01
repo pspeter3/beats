@@ -5,4 +5,11 @@ Beats.helpers do
     
     json_data
   end
+  
+  def current_page
+    page = params[:page].to_i
+    page = 1 if page < 1
+    
+    page
+  end
 end

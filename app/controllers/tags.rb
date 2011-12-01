@@ -8,8 +8,23 @@ Beats.controllers :tags do
   end
 
   get :show, :map => '/tags/:tag', :provides => :json do
-    beats = Beat.tagged_with params[:tag]
+    result = {}
+    result[:page] = current_page
+    result[:count] = Beat.tagged_with(params[:tag]).count
+    result[:beats] = Beat.tagged_with(params[:tag]).paginate(result[:page])
+    case params[:sort]
+      when 'timestamp'
+        result[:sort] = 'timestamp'
+        result[:beats] = result[:beats].desc('timestamp')
+      when 'points'
+        result[:sort] = 'points'
+        result[:beats] = result[:beats].desc('votes.point')
+      else
+        puts 'uid'
+        result[:sort] = 'uid'
+        result[:beats] = result[:beats].desc('uid')
+    end
     
-    jsonp beats
+    jsonp result
   end
 end

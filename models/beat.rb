@@ -22,20 +22,19 @@ class Beat
   validates_presence_of :summary
   validates_presence_of :disposition
   
+  index :timestamp
+  index :uid, :unique => true
+  index 'votes.point'
+  
   embeds_many :comments
   
   fulltext_search_in :summary
   voteable self, :up => +1, :down => -1
-  
-  before_create :add_crime_to_tags
-  
+    
   # Hand made pagination
   def self.paginate(page)
-    self.skip((page - 1) * 10).limit(10)
-  end
-  
-  private
-  def add_crime_to_tags
-    self.tags = self.crime
+    result_size = 20
+    skip_count = (page - 1) * result_size
+    self.skip(skip_count).limit(result_size)
   end
 end
