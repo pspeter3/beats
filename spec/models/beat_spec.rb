@@ -14,5 +14,4 @@ describe Beat do
   it { should validate_presence_of(:summary) }
   it { should validate_presence_of(:timestamp) }
   it { should validate_presence_of(:disposition) }
-  it { should embed_many(:comments) }
 end

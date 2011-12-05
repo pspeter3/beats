@@ -1,6 +1,5 @@
 class Beat
   include Mongoid::Document
-  include Mongoid::Taggable
   include Mongoid::FullTextSearch
   include Mongo::Voteable
   include Mongoid::Timestamps
@@ -16,14 +15,13 @@ class Beat
   key :uid
   
   validates_presence_of :uid
+  validates_uniqueness_of :uid
   validates_presence_of :crime
   validates_presence_of :timestamp
   validates_presence_of :location
   validates_presence_of :summary
   validates_presence_of :disposition
   
-  index :timestamp
-  index :uid, :unique => true
   index 'votes.point'
   
   embeds_many :comments

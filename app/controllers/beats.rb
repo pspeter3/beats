@@ -5,9 +5,6 @@ Beats.controllers :beats do
     result[:count] = Beat.count
     result[:beats] = Beat.paginate(result[:page])
     case params[:sort]
-      when 'timestamp'
-        result[:sort] = 'timestamp'
-        result[:beats] = result[:beats].desc('timestamp')
       when 'points'
         result[:sort] = 'points'
         result[:beats] = result[:beats].desc('votes.point')
