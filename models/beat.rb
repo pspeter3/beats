@@ -23,7 +23,8 @@ class Beat
   validates_presence_of :disposition
   
   index 'votes.point'
-  
+  index :uid
+    
   embeds_many :comments
   
   fulltext_search_in :summary
@@ -34,5 +35,44 @@ class Beat
     result_size = 20
     skip_count = (page - 1) * result_size
     self.skip(skip_count).limit(result_size)
+  end
+  
+  # Calculate crimes and locations
+  def self.calculate(uid)
+    # Define the map function in javascript
+    map = <<EOF
+function() {
+  var result = {count: 1, locations: {}};
+  result.locations[this.location] = 1;
+  
+  emit(this.crime, result);
+}
+EOF
+
+# Define the reduce function in javascript
+    reduce = <<EOF
+function(key, values) {
+  var result = {count: 0, locations: {}};
+
+  for(var i = 0; i < values.length; i++) {
+    var value = values[i];
+    result.count += value.count;
+    for (var loc in value.locations) {
+      if (result.locations[loc] !== undefined) {
+        result.locations[loc] += value.locations[loc];
+      } else {
+        result.locations[loc] = value.locations[loc];
+      }
+    }
+  }
+
+  return result;
+}
+EOF
+
+    self.collection.map_reduce(map, reduce, {
+      'out' => {'reduce' => 'crimes'},
+      'query' => {'uid' => {'$gt' => uid}}
+    })
   end
 end
