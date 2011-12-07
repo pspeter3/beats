@@ -9,7 +9,7 @@ database_name = case Padrino.env
 end
 
 if Padrino.env == :production
-  Mongoid.database = Mongo::Connection.new('staff.mongohq.com', 10005).db('beats')
+  Mongoid.database = Mongo::Connection.new('staff.mongohq.com', 10059).db('beats')
   Mongoid.database.authenticate 'beats', 'beatsdb'
 else
   Mongoid.database = Mongo::Connection.new(host, port).db(database_name)
