@@ -1,4 +1,9 @@
 class Scraper
+  def self.run
+    scraper = Scraper.new
+    scraper.parse
+  end
+  
   # Parse 
   def parse
     # Open the HTML document
@@ -12,11 +17,12 @@ class Scraper
     # Iterate through the beats
     beats.each do |record|
       # Get an instance of the beat model 
-      beat = handle record
-      
+      #beat = handle record
+      puts record
     end
   end
   
+  private
   def handle(record)
     beat = Beat.new
     beat.crime, beat.timestamp = get_crime_and_timestamp record[0]
