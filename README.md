@@ -34,3 +34,7 @@ Downvotes the beat and then returns the current vote object
 ### GET /search?q=:query
 
 Returns a list of all the beats that have the query text in their summary
+
+## GET /crimes
+
+Returns a list of crimes broken down by location.
