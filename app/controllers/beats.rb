@@ -2,7 +2,6 @@ Beats.controllers :beats do
   get :index, :provides => :json do
     result = {}
     result[:page] = current_page
-    result[:count] = Beat.count
     if params[:crime] != nil
       if params[:location] != nil
         result[:beats] = Beat.where(:crime => params[:crime], :location => params[:location])
@@ -12,6 +11,7 @@ Beats.controllers :beats do
     else
       result[:beats] = Beat
     end
+    result[:count] = result[:beats].count
     result[:beats] = result[:beats].paginate(result[:page])
     case params[:sort]
       when 'points'
