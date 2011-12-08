@@ -24,6 +24,8 @@ class Beat
   
   index 'votes.point'
   index :uid
+  
+  index [[:crime, Mongo::ASCENDING ], [:location, Mongo::ASCENDING ]]
     
   embeds_many :comments
   
@@ -38,7 +40,7 @@ class Beat
   end
   
   # Calculate crimes and locations
-  def self.calculate(uid)
+  def self.calculate
     # Define the map function in javascript
     map = <<EOF
 function() {
@@ -70,9 +72,6 @@ function(key, values) {
 }
 EOF
 
-    self.collection.map_reduce(map, reduce, {
-      'out' => {'reduce' => 'crimes'},
-      'query' => {'uid' => {'$gt' => uid}}
-    })
+    self.collection.map_reduce(map, reduce, {'out' => {'replace' => 'crimes'}})
   end
 end

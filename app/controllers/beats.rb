@@ -3,13 +3,21 @@ Beats.controllers :beats do
     result = {}
     result[:page] = current_page
     result[:count] = Beat.count
-    result[:beats] = Beat.paginate(result[:page])
+    if params[:crime] != nil
+      if params[:location] != nil
+        result[:beats] = Beat.where(:crime => params[:crime], :location => params[:location])
+      else
+        result[:beats] = Beat.where(:crime => params[:crime])
+      end
+    else
+      result[:beats] = Beat
+    end
+    result[:beats] = result[:beats].paginate(result[:page])
     case params[:sort]
       when 'points'
         result[:sort] = 'points'
         result[:beats] = result[:beats].desc('votes.point')
       else
-        puts 'uid'
         result[:sort] = 'uid'
         result[:beats] = result[:beats].desc('uid')
     end
