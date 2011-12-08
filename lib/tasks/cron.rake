@@ -5,12 +5,11 @@ task :cron => :environment do
     # Get the relevant paragraphs
     beats = doc.css('tr p').to_a
     # Filter down to the beats
-    beats.reject! { |i| !(i =~ /location/i) }
+    beats.reject! { |i| !(i.inner_text =~ /location/i) }
     # Map to the arrays
     beats.map! { |i| i.inner_text.split(/\r\n/) }
     # Iterate through the beats
     beats.each do |record|
-      # Get an instance of the beat model 
-      puts record
+      puts record.class
     end
 end
