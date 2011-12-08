@@ -12,7 +12,12 @@ with <http://www.studlife.com>.
 
 ### GET /beats
 
-Returns a list of police beats
+Returns a list of police beats with following params
+
+- **page**: The page number to load
+- **sort**: Either sort by `points` or get default sort of uid
+- **crime**: Search for specific crimes
+- **location**: Search for locations if a crime is provided
 
 ### GET /beats/:id
 
@@ -29,9 +34,3 @@ Downvotes the beat and then returns the current vote object
 ### GET /search?q=:query
 
 Returns a list of all the beats that have the query text in their summary
-
-## TODO
-
-- Add pagination
-- Add sorting
-- Add scraper
