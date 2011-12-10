@@ -34,7 +34,7 @@ class Beat
     
   # Hand made pagination
   def self.paginate(page)
-    result_size = 20
+    result_size = 100
     skip_count = (page - 1) * result_size
     self.skip(skip_count).limit(result_size)
   end
